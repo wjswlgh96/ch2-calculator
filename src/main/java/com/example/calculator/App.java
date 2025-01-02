@@ -36,7 +36,7 @@ public class App {
             System.out.println("아무키나 눌러주시면 더 계산합니다.");
             if(sc.nextLine().equals("exit")) {
                 break;
-            };
+            }
         }
 
         Integer firstValue = calculator.getResult(0);
@@ -48,7 +48,11 @@ public class App {
         List<Integer> allResults = calculator.getAllResult();
         System.out.println("allResults = " + allResults);
 
+        Integer removedValue = calculator.removeResult();
+        System.out.println("removedValue = " + removedValue);
+        System.out.println("getAllResults = " + calculator.printAllResult());
+
         calculator.clear();
-        System.out.println("clear result: " + calculator);
+        System.out.println("clear result = " + calculator);
     }
 }

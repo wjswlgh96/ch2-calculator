@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private List<Integer> result = new ArrayList<>();
+    private final List<Integer> result = new ArrayList<>();
 
     public Integer getResult(int index) {
         return result.get(index);
@@ -34,8 +34,8 @@ public class Calculator {
         return result.toString();
     }
 
-    public void removeResult() {
-        result.remove(0);
+    public Integer removeResult() {
+        return result.remove(0);
     }
 
     public Integer calculate(int x, int y, String operator) {
