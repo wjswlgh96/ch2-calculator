@@ -53,9 +53,8 @@ public class App {
             }
 
             System.out.println("결과: " + result);
+            System.out.print("더 계산하시겠습니까? 아무키나 입력해주세요. (exit 입력 시 종료): ");
 
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            System.out.println("아무키나 눌러주시면 더 계산합니다.");
             if(sc.nextLine().equals("exit")) {
                 break;
             };

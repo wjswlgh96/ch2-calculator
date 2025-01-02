@@ -11,10 +11,15 @@ public class App {
         ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
-            Number num1 = parseNumber(sc.nextLine());
+            String num1 = sc.nextLine();
 
             System.out.print("두 번째 숫자를 입력하세요: ");
-            Number num2 = parseNumber(sc.nextLine());
+            String num2 = sc.nextLine();
+
+            if(num1.contains("-") || num2.contains("-")) {
+                System.out.println("음수는 입력할 수 없습니다!!");
+                continue;
+            }
 
             OperatorType operation;
             try {
@@ -30,7 +35,7 @@ public class App {
                 continue;
             }
 
-            Number result = calculator.calculate(num1, num2, operation);
+            Number result = calculator.calculate(parseNumber(num1), parseNumber(num2), operation);
             if (result == null) {
                 continue;
             }
@@ -42,8 +47,7 @@ public class App {
 
             System.out.println();
 
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            System.out.println("아무키나 눌러주시면 더 계산합니다.");
+            System.out.print("더 계산하시겠습니까? 아무키나 입력해주세요. (exit 입력 시 종료): ");
             if(sc.nextLine().equals("exit")) {
                 break;
             }
