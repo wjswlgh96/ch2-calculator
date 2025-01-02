@@ -1,7 +1,10 @@
 package com.example.calculator3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 @SuppressWarnings("unchecked")
 public class ArithmeticCalculator<T extends Number> {
@@ -13,6 +16,17 @@ public class ArithmeticCalculator<T extends Number> {
 
     public List<T> getAllResult() {
         return result;
+    }
+
+    public List<T> getBiggerResult(T number) {
+        List<T> newList = null;
+        if(number instanceof Double) {
+            newList = result.stream().filter((v) -> (Double) v.doubleValue() > (Double) number.doubleValue()).toList();
+        } else {
+            newList = result.stream().filter((v) -> (Integer) v.intValue() > (Integer) number.intValue()).toList();
+        }
+
+        return newList;
     }
 
     public T setResult(int index, T value) {

@@ -45,6 +45,11 @@ public class App {
                 break;
             }
         }
+        System.out.print("결과 목록에서 입력 값보다 큰 값 가져오기(숫자 입력): ");
+        Number n = parseNumber(sc.nextLine());
+        System.out.println("결과: " + calculator.getBiggerResult(n));
+
+        System.out.println();
 
         Number firstValue = calculator.getResult(0);
         System.out.println("firstValue = " + firstValue);
