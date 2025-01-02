@@ -50,17 +50,17 @@ public class ArithmeticCalculator<T extends BigDecimal> {
         switch (operator) {
             case PLUS: {
                 value = x.add(y);
-                this.result.add((T) value);
+                result.add((T) value);
                 return (T) value;
             }
             case MINUS: {
                 value = x.subtract(y);
-                this.result.add((T) value);
+                result.add((T) value);
                 return (T) value;
             }
             case MULTIPLY: {
                 value = x.multiply(y);
-                this.result.add((T) value);
+                result.add((T) value);
                 return (T) value;
             }
             case DIVIDE: {
@@ -70,7 +70,7 @@ public class ArithmeticCalculator<T extends BigDecimal> {
                 }
 
                 value = x.divide(y, 32, RoundingMode.HALF_UP);
-                this.result.add((T) value);
+                result.add((T) value);
                 return (T) value;
             }
         }
