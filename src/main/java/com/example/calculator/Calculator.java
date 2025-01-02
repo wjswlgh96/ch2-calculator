@@ -10,6 +10,10 @@ public class Calculator {
         return result.get(index);
     }
 
+    public List<Integer> getAllResult() {
+        return result;
+    }
+
     public Integer setResult(int index, int value) {
         if(result.isEmpty()) {
             result.add(value);
@@ -20,6 +24,10 @@ public class Calculator {
         }
 
         return result.set(index, value);
+    }
+
+    public void clear() {
+        result.clear();
     }
 
     public String printAllResult() {
@@ -60,5 +68,10 @@ public class Calculator {
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return result.toString();
     }
 }
