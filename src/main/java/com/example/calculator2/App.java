@@ -1,4 +1,4 @@
-package com.example.calculator;
+package com.example.calculator2;
 
 import java.util.List;
 import java.util.Scanner;
@@ -38,5 +38,21 @@ public class App {
                 break;
             }
         }
+
+        Integer firstValue = calculator.getResult(0);
+        System.out.println("firstValue = " + firstValue);
+
+        Integer setValue = calculator.setResult(0, 999);
+        System.out.println("setFirstValue = " + setValue);
+
+        List<Integer> allResults = calculator.getAllResult();
+        System.out.println("allResults = " + allResults);
+
+        Integer removedValue = calculator.removeResult();
+        System.out.println("removedValue = " + removedValue);
+        System.out.println("getAllResults = " + calculator.printAllResult());
+
+        calculator.clear();
+        System.out.println("clear result = " + calculator);
     }
 }
