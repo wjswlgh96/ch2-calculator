@@ -31,6 +31,9 @@ public class App {
             }
 
             Number result = calculator.calculate(num1, num2, operation);
+            if (result == null) {
+                continue;
+            }
 
             System.out.println();
 

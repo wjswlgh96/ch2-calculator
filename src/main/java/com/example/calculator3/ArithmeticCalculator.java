@@ -84,6 +84,11 @@ public class ArithmeticCalculator<T extends Number> {
                 return (T) number;
             }
             case DIVIDE: {
+                if(y.doubleValue() == 0.0 || y.intValue() == 0) {
+                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                    return null;
+                }
+
                 if (x instanceof Double || y instanceof Double) {
                     number = x.doubleValue() / y.doubleValue();
                 } else {

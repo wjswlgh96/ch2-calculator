@@ -8,12 +8,17 @@ public class App {
 
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
-            int x = sc.nextInt();
+            int num1 = sc.nextInt();
             sc.nextLine();
 
             System.out.print("두 번째 숫자를 입력하세요: ");
-            int y = sc.nextInt();
+            int num2 = sc.nextInt();
             sc.nextLine();
+
+            if(num1 < 0 || num2 < 0) {
+                System.out.println("양의 정수만 입력이 가능합니다!!");
+                continue;
+            }
 
             System.out.print("사칙연산 기호를 입력하세요: ");
             String operator = sc.nextLine();
@@ -21,24 +26,24 @@ public class App {
             int result = 0;
             switch (operator.charAt(0)) {
                 case '+' : {
-                    result = x + y;
+                    result = num1 + num2;
                     break;
                 }
                 case '-': {
-                    result = x - y;
+                    result = num1 - num2;
                     break;
                 }
                 case '*': {
-                    result = x * y;
+                    result = num1 * num2;
                     break;
                 }
                 case '/': {
-                    if (y == 0) {
+                    if (num2 == 0) {
                         System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                         continue;
                     }
 
-                    result = x / y;
+                    result = num1 / num2;
                     break;
                 }
                 default: {

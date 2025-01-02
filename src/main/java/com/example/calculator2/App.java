@@ -18,6 +18,11 @@ public class App {
             int num2 = sc.nextInt();
             sc.nextLine();
 
+            if(num1 < 0 || num2 < 0) {
+                System.out.println("양의 정수만 입력이 가능합니다!!");
+                continue;
+            }
+
             System.out.print("사칙연산 기호를 입력하세요: ");
             String operator = sc.nextLine();
 
