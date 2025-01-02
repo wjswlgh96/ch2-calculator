@@ -27,7 +27,10 @@ public class App {
             String operator = sc.nextLine();
 
             Integer result = calculator.calculate(num1, num2, operator);
-            if(result == null) continue;
+            if(result == null) {
+                System.out.println("결과값을 가져올 수 없습니다. 처음으로 돌아갑니다.");
+                continue;
+            };
 
             System.out.println();
 

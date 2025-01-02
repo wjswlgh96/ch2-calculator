@@ -36,9 +36,10 @@ public class App {
             }
 
             Number result = calculator.calculate(parseNumber(num1), parseNumber(num2), operation);
-            if (result == null) {
+            if(result == null) {
+                System.out.println("결과값을 가져올 수 없습니다. 처음으로 돌아갑니다.");
                 continue;
-            }
+            };
 
             System.out.println();
 
