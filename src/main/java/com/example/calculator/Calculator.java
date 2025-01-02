@@ -1,60 +1,64 @@
 package com.example.calculator;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
+    private List<Integer> result = new ArrayList<>();
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public Integer getResult(int index) {
+        return result.get(index);
+    }
 
-        while (true) {
-            System.out.print("첫 번째 숫자를 입력하세요: ");
-            int x = sc.nextInt();
-            sc.nextLine();
-
-            System.out.print("두 번째 숫자를 입력하세요: ");
-            int y = sc.nextInt();
-            sc.nextLine();
-
-            System.out.print("사칙연산 기호를 입력하세요: ");
-            String operator = sc.nextLine();
-
-            int result = 0;
-            switch (operator.charAt(0)) {
-                case '+' : {
-                    result = x + y;
-                    break;
-                }
-                case '-': {
-                    result = x - y;
-                    break;
-                }
-                case '*': {
-                    result = x * y;
-                    break;
-                }
-                case '/': {
-                    if (y == 0) {
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                        continue;
-                    }
-
-                    result = x / y;
-                    break;
-                }
-                default: {
-                    System.out.println("잘못된 기호를 입력하셨습니다. 처음으로 돌아갑니다.");
-                    break;
-                }
-            }
-
-            System.out.println("결과: " + result);
-
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            System.out.println("아무키나 눌러주시면 더 계산합니다.");
-            if(sc.nextLine().equals("exit")) {
-                break;
-            };
+    public Integer setResult(int index, int value) {
+        if(result.isEmpty()) {
+            result.add(value);
+            return value;
+        }  else if(result.size() - 1 < index) {
+            System.out.println("인덱스 범위를 초과했습니다.");
+            return null;
         }
+
+        return result.set(index, value);
+    }
+
+    public String printAllResult() {
+        return result.toString();
+    }
+
+    public void removeResult() {
+        result.remove(0);
+    }
+
+    public Integer calculate(int x, int y, String operator) {
+        switch (operator) {
+            case "+": {
+                result.add(x + y);
+                return x + y;
+            }
+            case "-": {
+                result.add(x - y);
+                return x - y;
+            }
+            case "*": {
+                result.add(x * y);
+                return x * y;
+            }
+            case "/": {
+                if(y == 0) {
+                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                    break;
+                }
+
+                result.add(x / y);
+                return x / y;
+            }
+            default: {
+                System.out.println("제대로된 부호가 입력되지 않았습니다");
+                break;
+            }
+        }
+
+        return null;
     }
 }
