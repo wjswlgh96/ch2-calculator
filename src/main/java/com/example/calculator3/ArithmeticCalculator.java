@@ -1,13 +1,12 @@
 package com.example.calculator3;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 @SuppressWarnings("unchecked")
-public class ArithmeticCalculator<T extends Number> {
+public class ArithmeticCalculator<T extends BigDecimal> {
     private final List<T> result = new ArrayList<>();
 
     public T getResult(int index) {
@@ -19,14 +18,7 @@ public class ArithmeticCalculator<T extends Number> {
     }
 
     public List<T> getBiggerResult(T number) {
-        List<T> newList = null;
-        if(number instanceof Double) {
-            newList = result.stream().filter((v) -> (Double) v.doubleValue() > (Double) number.doubleValue()).toList();
-        } else {
-            newList = result.stream().filter((v) -> (Integer) v.intValue() > (Integer) number.intValue()).toList();
-        }
-
-        return newList;
+        return result.stream().filter(num -> num.compareTo(number) > 0).toList();
     }
 
     public T setResult(int index, T value) {
@@ -54,34 +46,22 @@ public class ArithmeticCalculator<T extends Number> {
     }
 
     public T calculate(T x, T y, OperatorType operator) {
-        Number number = 0;
+        BigDecimal value;
         switch (operator) {
             case PLUS: {
-                if (x instanceof Double || y instanceof Double) {
-                    number = x.doubleValue() + y.doubleValue();
-                } else {
-                    number = x.intValue() + y.intValue();
-                }
-                this.result.add((T) number);
-                return (T) number;
+                value = x.add(y);
+                this.result.add((T) value);
+                return (T) value;
             }
             case MINUS: {
-                if (x instanceof Double || y instanceof Double) {
-                    number = x.doubleValue() - y.doubleValue();
-                } else {
-                    number = x.intValue() - y.intValue();
-                }
-                this.result.add((T) number);
-                return (T) number;
+                value = x.subtract(y);
+                this.result.add((T) value);
+                return (T) value;
             }
             case MULTIPLY: {
-                if (x instanceof Double || y instanceof Double) {
-                    number = x.doubleValue() * y.doubleValue();
-                } else {
-                    number = x.intValue() * y.intValue();
-                }
-                this.result.add((T) number);
-                return (T) number;
+                value = x.multiply(y);
+                this.result.add((T) value);
+                return (T) value;
             }
             case DIVIDE: {
                 if(y.doubleValue() == 0.0 || y.intValue() == 0) {
@@ -89,16 +69,11 @@ public class ArithmeticCalculator<T extends Number> {
                     return null;
                 }
 
-                if (x instanceof Double || y instanceof Double) {
-                    number = x.doubleValue() / y.doubleValue();
-                } else {
-                    number = x.intValue() / y.intValue();
-                }
-                this.result.add((T) number);
-                return (T) number;
+                value = x.divide(y, 32, RoundingMode.HALF_UP);
+                this.result.add((T) value);
+                return (T) value;
             }
         }
-
         return null;
     }
 

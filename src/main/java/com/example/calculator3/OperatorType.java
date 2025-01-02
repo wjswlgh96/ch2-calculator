@@ -1,5 +1,7 @@
 package com.example.calculator3;
 
+import java.util.Arrays;
+
 public enum OperatorType {
     PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/");
 
@@ -15,7 +17,6 @@ public enum OperatorType {
                 return operatorType;
             }
         }
-
-        throw new OperatorTypeException("존재하지 않는 기호입니다: " + symbol);
+        throw new OperatorTypeException("OperationType ENUM 에 존재하지 않는 값입니다: [ +, -, *, / ] 중 하나를 입력해주세요.");
     }
 }

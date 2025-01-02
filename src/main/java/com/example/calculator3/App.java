@@ -1,5 +1,6 @@
 package com.example.calculator3;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,15 +9,17 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
+        ArithmeticCalculator<BigDecimal> calculator = new ArithmeticCalculator<>();
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
-            String num1 = sc.nextLine();
+            BigDecimal num1 = sc.nextBigDecimal();
+            sc.nextLine();
 
             System.out.print("두 번째 숫자를 입력하세요: ");
-            String num2 = sc.nextLine();
+            BigDecimal num2 = sc.nextBigDecimal();
+            sc.nextLine();
 
-            if(num1.contains("-") || num2.contains("-")) {
+            if(num1.compareTo(BigDecimal.ZERO) < 0 || num2.compareTo(BigDecimal.ZERO) < 0) {
                 System.out.println("음수는 입력할 수 없습니다!!");
                 continue;
             }
@@ -35,7 +38,7 @@ public class App {
                 continue;
             }
 
-            Number result = calculator.calculate(parseNumber(num1), parseNumber(num2), operation);
+            BigDecimal result = calculator.calculate(num1, num2, operation);
             if(result == null) {
                 System.out.println("결과값을 가져올 수 없습니다. 처음으로 돌아갑니다.");
                 continue;
@@ -54,33 +57,25 @@ public class App {
             }
         }
         System.out.print("결과 목록에서 입력 값보다 큰 값 가져오기(숫자 입력): ");
-        Number n = parseNumber(sc.nextLine());
+        BigDecimal n = sc.nextBigDecimal();
         System.out.println("결과: " + calculator.getBiggerResult(n));
 
         System.out.println();
 
-        Number firstValue = calculator.getResult(0);
+        BigDecimal firstValue = calculator.getResult(0);
         System.out.println("firstValue = " + firstValue);
 
-        Number setValue = calculator.setResult(0, 999);
+        BigDecimal setValue = calculator.setResult(0, BigDecimal.valueOf(999));
         System.out.println("setFirstValue = " + setValue);
 
-        List<Number> allResults = calculator.getAllResult();
+        List<BigDecimal> allResults = calculator.getAllResult();
         System.out.println("allResults = " + allResults);
 
-        Number removedValue = calculator.removeResult();
+        BigDecimal removedValue = calculator.removeResult();
         System.out.println("removedValue = " + removedValue);
         System.out.println("getAllResults = " + calculator.printAllResult());
 
         calculator.clear();
         System.out.println("clear result = " + calculator);
-    }
-
-    private static Number parseNumber(String input) {
-        if(input.contains(".")) {
-            return Double.parseDouble(input);
-        } else {
-            return Integer.parseInt(input);
-        }
     }
 }
