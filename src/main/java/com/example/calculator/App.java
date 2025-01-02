@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -22,15 +23,36 @@ public class App {
 
             Integer result = calculator.calculate(num1, num2, operator);
             if(result == null) continue;
+
+            System.out.println();
+
             System.out.println("결과: " + result);
+
+            System.out.println("현재까지의 계산 과정: " + calculator.printAllResult());
+
+            System.out.println();
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             System.out.println("아무키나 눌러주시면 더 계산합니다.");
             if(sc.nextLine().equals("exit")) {
                 break;
-            };
-
-            System.out.println("현재까지의 계산 과정: " + calculator.printAllResult());
+            }
         }
+
+        Integer firstValue = calculator.getResult(0);
+        System.out.println("firstValue = " + firstValue);
+
+        Integer setValue = calculator.setResult(0, 999);
+        System.out.println("setFirstValue = " + setValue);
+
+        List<Integer> allResults = calculator.getAllResult();
+        System.out.println("allResults = " + allResults);
+
+        Integer removedValue = calculator.removeResult();
+        System.out.println("removedValue = " + removedValue);
+        System.out.println("getAllResults = " + calculator.printAllResult());
+
+        calculator.clear();
+        System.out.println("clear result = " + calculator);
     }
 }

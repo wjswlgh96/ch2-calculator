@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private List<Integer> result = new ArrayList<>();
+    private final List<Integer> result = new ArrayList<>();
 
     public Integer getResult(int index) {
         return result.get(index);
+    }
+
+    public List<Integer> getAllResult() {
+        return result;
     }
 
     public Integer setResult(int index, int value) {
@@ -22,12 +26,16 @@ public class Calculator {
         return result.set(index, value);
     }
 
+    public void clear() {
+        result.clear();
+    }
+
     public String printAllResult() {
         return result.toString();
     }
 
-    public void removeResult() {
-        result.remove(0);
+    public Integer removeResult() {
+        return result.remove(0);
     }
 
     public Integer calculate(int x, int y, String operator) {
@@ -60,5 +68,10 @@ public class Calculator {
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return result.toString();
     }
 }
