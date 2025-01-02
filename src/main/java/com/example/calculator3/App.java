@@ -16,7 +16,7 @@ public class App {
             System.out.print("두 번째 숫자를 입력하세요: ");
             Number num2 = parseNumber(sc.nextLine());
 
-            OperatorType operation = null;
+            OperatorType operation;
             try {
                 System.out.print("사칙연산 기호를 입력하세요(+, -, *, /): ");
 
@@ -73,9 +73,9 @@ public class App {
 
     private static Number parseNumber(String input) {
         if(input.contains(".")) {
-            return (Double) Double.parseDouble(input);
+            return Double.parseDouble(input);
         } else {
-            return (Integer) Integer.parseInt(input);
+            return Integer.parseInt(input);
         }
     }
 }
