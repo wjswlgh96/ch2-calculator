@@ -48,7 +48,7 @@ public class App {
                 }
                 default: {
                     System.out.println("잘못된 기호를 입력하셨습니다. 처음으로 돌아갑니다.");
-                    break;
+                    continue;
                 }
             }
 
